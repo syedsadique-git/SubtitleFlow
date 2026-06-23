@@ -31,7 +31,7 @@
                 return s.replace(/~and~/g, '&')
               })
               .join('?')
-            window.history.replaceState(null, null, l.pathname + decoded + l.hash)
+            window.history.replaceState(null, null, l.pathname.replace(/\/$/, '') + '/' + decoded.replace(/^\//, '') + l.hash)
           }
         })(window.location)
       })()
