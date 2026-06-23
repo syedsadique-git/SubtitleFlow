@@ -1,3 +1,0 @@
-# Disable Jekyll processing on GitHub Pages.
-# Vite emits hashed asset filenames under /assets/ that start with underscores
-# or contain dots; Jekyll would ignore them without this file.
