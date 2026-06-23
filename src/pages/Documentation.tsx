@@ -84,10 +84,10 @@ export default function Documentation() {
                   { title: 'Offline Mode', desc: 'Cached subtitles are available even without an internet connection.', icon: Cpu },
                   { title: 'Settings Sync', desc: 'Your preferences sync across devices when you create an account.', icon: Settings },
                 ].map(f => (
-                  <div key={f.title} className="p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+                  <div key={f.title} className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-300">
                     <f.icon size={20} className="text-indigo-500 mb-2" />
                     <h3 className="font-semibold text-sm mb-1">{f.title}</h3>
-                    <p className="text-sm text-slate-500">{f.desc}</p>
+                    <p className="text-sm text-slate-500 dark:text-slate-400">{f.desc}</p>
                   </div>
                 ))}
               </div>

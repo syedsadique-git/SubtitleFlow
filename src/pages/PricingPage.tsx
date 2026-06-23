@@ -176,20 +176,20 @@ export default function PricingPage() {
           className="max-w-4xl mx-auto"
         >
           <h2 className="text-2xl font-bold text-center mb-8">Compare Plans</h2>
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800">
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-slate-200 dark:border-slate-800">
-                  <th className="text-left py-3 pr-4 font-semibold">Feature</th>
-                  <th className="text-center py-3 px-4 font-semibold">Free</th>
-                  <th className="text-center py-3 px-4 font-semibold text-indigo-500">Premium</th>
-                  <th className="text-center py-3 pl-4 font-semibold">Enterprise</th>
+                <tr className="bg-slate-50 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
+                  <th className="text-left py-3.5 pr-4 pl-4 font-semibold">Feature</th>
+                  <th className="text-center py-3.5 px-4 font-semibold">Free</th>
+                  <th className="text-center py-3.5 px-4 font-semibold text-indigo-500">Premium</th>
+                  <th className="text-center py-3.5 pl-4 pr-4 font-semibold">Enterprise</th>
                 </tr>
               </thead>
               <tbody>
-                {comparisons.map(row => (
-                  <tr key={row.feature} className="border-b border-slate-100 dark:border-slate-800/50">
-                    <td className="py-3 pr-4 text-slate-600 dark:text-slate-400">{row.feature}</td>
+                {comparisons.map((row, i) => (
+                  <tr key={row.feature} className={`border-b border-slate-100 dark:border-slate-800/50 ${i % 2 === 0 ? 'bg-white dark:bg-slate-950/50' : 'bg-slate-50/50 dark:bg-slate-900/30'}`}>
+                    <td className="py-3 pr-4 pl-4 text-slate-600 dark:text-slate-400">{row.feature}</td>
                     <td className="text-center py-3 px-4">
                       {typeof row.free === 'boolean' ? (
                         row.free ? <Check size={16} className="text-indigo-500 mx-auto" /> : <span className="text-slate-300">—</span>
@@ -204,7 +204,7 @@ export default function PricingPage() {
                         <span className="text-slate-600 dark:text-slate-400">{row.premium}</span>
                       )}
                     </td>
-                    <td className="text-center py-3 pl-4">
+                    <td className="text-center py-3 pl-4 pr-4">
                       {typeof row.enterprise === 'boolean' ? (
                         row.enterprise ? <Check size={16} className="text-indigo-500 mx-auto" /> : <span className="text-slate-300">—</span>
                       ) : (

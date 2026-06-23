@@ -125,21 +125,21 @@ export default function Download() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="max-w-3xl mx-auto"
+          className="max-w-3xl mx-auto w-full"
         >
           <h2 className="text-2xl font-bold text-center mb-8">How to Install</h2>
           <div className="space-y-4">
             {instructions.map(inst => (
               <div
                 key={inst.step}
-                className="flex items-start gap-4 p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50"
+                className="flex items-start gap-4 p-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-300"
               >
-                <div className="w-8 h-8 rounded-full bg-indigo-500 text-white flex items-center justify-center text-sm font-bold shrink-0">
+                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-cyan-500 text-white flex items-center justify-center text-sm font-bold shrink-0">
                   {inst.step}
                 </div>
                 <div>
                   <h3 className="font-semibold text-sm">{inst.title}</h3>
-                  <p className="text-sm text-slate-500 dark:text-slate-400">{inst.description}</p>
+                  <p className="text-sm text-slate-500 dark:text-slate-400 mt-0.5">{inst.description}</p>
                 </div>
               </div>
             ))}

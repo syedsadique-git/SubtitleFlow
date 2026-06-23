@@ -147,17 +147,24 @@ export default function FAQ() {
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="group p-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 hover:border-slate-300 dark:hover:border-slate-700 transition-colors cursor-pointer"
+                    className="group p-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-md transition-all duration-200 cursor-pointer [&[open]]:border-indigo-500/30 [&[open]]:bg-indigo-500/[0.02]"
                   >
                     <summary className="text-sm font-medium list-none flex items-center justify-between">
-                      {faq.q}
-                      <span className="text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-4">
+                      <span>{faq.q}</span>
+                      <span className="text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-4 text-xs">
                         ▼
                       </span>
                     </summary>
-                    <p className="mt-3 text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
-                      {faq.a}
-                    </p>
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      className="overflow-hidden"
+                    >
+                      <p className="mt-3 text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+                        {faq.a}
+                      </p>
+                    </motion.div>
                   </motion.details>
                 ))}
               </div>

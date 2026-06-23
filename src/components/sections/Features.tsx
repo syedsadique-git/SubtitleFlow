@@ -73,7 +73,7 @@ const categories = [
 
 export default function Features() {
   return (
-    <section id="features" className="py-24 lg:py-32 relative">
+    <section id="features" className="py-24 lg:py-32 relative scroll-mt-24">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-indigo-500/[0.02] to-transparent" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -104,9 +104,9 @@ export default function Features() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
               transition={{ delay: index * 0.05 }}
-              className="group p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 card-hover"
+                className="group p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 card-hover hover:shadow-xl hover:shadow-indigo-500/5"
             >
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500/10 to-cyan-500/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500/10 to-cyan-500/10 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:from-indigo-500/20 group-hover:to-cyan-500/20 transition-all duration-300">
                 <feature.icon size={20} className="text-indigo-500" />
               </div>
               <h3 className="text-base font-semibold mb-2">{feature.title}</h3>

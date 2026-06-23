@@ -67,7 +67,7 @@ const plans = [
 
 export default function Pricing() {
   return (
-    <section id="pricing" className="py-24 lg:py-32 bg-slate-50 dark:bg-slate-900/50 relative overflow-hidden">
+    <section id="pricing" className="py-24 lg:py-32 bg-slate-50 dark:bg-slate-900/50 relative overflow-hidden scroll-mt-24">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-gradient-to-br from-indigo-500/5 via-transparent to-cyan-500/5 rounded-full blur-3xl" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -98,10 +98,10 @@ export default function Pricing() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className={`relative p-8 rounded-2xl border transition-all duration-300 ${
+              className={`relative p-8 rounded-2xl border card-hover ${
                 plan.popular
-                  ? 'border-indigo-500/50 bg-white dark:bg-slate-900 shadow-xl shadow-indigo-500/10 md:scale-105'
-                  : 'border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50'
+                  ? 'border-indigo-500/50 bg-white dark:bg-slate-900 shadow-xl shadow-indigo-500/10 md:scale-105 hover:shadow-2xl hover:shadow-indigo-500/20'
+                  : 'border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 hover:shadow-xl hover:shadow-slate-900/5 dark:hover:shadow-slate-900/20'
               }`}
             >
               {plan.popular && (

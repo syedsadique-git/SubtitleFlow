@@ -46,7 +46,7 @@ const browsers = [
 
 export default function BrowserSupport() {
   return (
-    <section id="browsers" className="py-24 lg:py-32 bg-slate-50 dark:bg-slate-900/50">
+    <section id="browsers" className="py-24 lg:py-32 bg-slate-50 dark:bg-slate-900/50 scroll-mt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -71,7 +71,7 @@ export default function BrowserSupport() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="relative group p-8 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 card-hover text-center"
+              className="relative group p-8 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 card-hover text-center hover:shadow-xl hover:shadow-indigo-500/5"
             >
               {browser.badge && (
                 <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full bg-indigo-500 text-white text-xs font-medium">

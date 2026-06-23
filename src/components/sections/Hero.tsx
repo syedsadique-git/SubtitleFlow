@@ -61,13 +61,13 @@ export default function Hero() {
               </button>
             </div>
 
-            <div className="flex items-center gap-8">
+            <div className="grid grid-cols-4 gap-4">
               {stats.map(stat => (
-                <div key={stat.label}>
+                <div key={stat.label} className="text-center">
                   <div className="text-2xl font-bold text-slate-900 dark:text-white">
                     {stat.value}
                   </div>
-                  <div className="text-xs text-slate-500 dark:text-slate-400">
+                  <div className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
                     {stat.label}
                   </div>
                 </div>
