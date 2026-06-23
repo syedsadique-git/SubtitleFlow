@@ -12,6 +12,26 @@
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      // SPA deep-link redirect for GitHub Pages.
+      // When a deep link (e.g. /SubtitleFlow/pricing) is refreshed, Pages serves
+      // 404.html, which stores the requested path here and bounces to the app
+      // root. On load, we restore it so the router can render the right route.
+      (function () {
+        (function (l) {
+          if (l.search[1] === '/') {
+            var decoded = l.search
+              .slice(1)
+              .split('&')
+              .map(function (s) {
+                return s.replace(/~and~/g, '&')
+              })
+              .join('?')
+            window.history.replaceState(null, null, l.pathname + decoded + l.hash)
+          }
+        })(window.location)
+      })()
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
