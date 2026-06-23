@@ -89,13 +89,13 @@ export default function Navbar() {
               {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
             </button>
 
-            <a
-              href="/download"
+            <Link
+              to="/download"
               className="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-indigo-500 hover:bg-indigo-600 text-white text-sm font-medium transition-all hover:shadow-lg hover:shadow-indigo-500/25"
             >
               <Download size={16} />
               Install Extension
-            </a>
+            </Link>
 
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -143,13 +143,13 @@ export default function Navbar() {
                   </Link>
                 )
               ))}
-              <a
-                href="/download"
+              <Link
+                to="/download"
                 className="flex items-center gap-2 px-3 py-2 rounded-lg bg-indigo-500 text-white text-sm font-medium"
               >
                 <Download size={16} />
                 Install Extension
-              </a>
+              </Link>
             </div>
           </motion.div>
         )}
