@@ -17,31 +17,20 @@
         document.head.appendChild(l)
       }
     </script>
+    <script>
+      (function () {
+        var redirect = sessionStorage.getItem('sf-redirect')
+        if (redirect && redirect !== window.location.href) {
+          sessionStorage.removeItem('sf-redirect')
+          history.replaceState(null, '', redirect)
+        }
+      })()
+    </script>
     <script type="module" crossorigin src="/SubtitleFlow/assets/index.js"></script>
     <link rel="stylesheet" crossorigin href="/SubtitleFlow/assets/index.css">
   </head>
   <body>
     <div id="root"></div>
-    <script>
-      (function () {
-        (function (l) {
-          if (l.search[1] === '/') {
-            var decoded = l.search
-              .slice(1)
-              .split('&')
-              .map(function (s) {
-                return s.replace(/~and~/g, '&')
-              })
-              .join('?')
-            var newUrl = l.pathname.replace(/\/$/, '') + '/' + decoded.replace(/^\//, '')
-            window.history.replaceState(null, null, newUrl + l.hash)
-            setTimeout(function () {
-              window.dispatchEvent(new PopStateEvent('popstate'))
-            }, 0)
-          }
-        })(window.location)
-      })()
-    </script>
     <script>
       if (window.location.hostname === 'syedsadique-git.github.io') {
         var s = document.createElement('script')
