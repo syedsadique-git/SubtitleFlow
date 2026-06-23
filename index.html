@@ -31,7 +31,11 @@
                 return s.replace(/~and~/g, '&')
               })
               .join('?')
-            window.history.replaceState(null, null, l.pathname.replace(/\/$/, '') + '/' + decoded.replace(/^\//, '') + l.hash)
+            var newUrl = l.pathname.replace(/\/$/, '') + '/' + decoded.replace(/^\//, '')
+            window.history.replaceState(null, null, newUrl + l.hash)
+            setTimeout(function () {
+              window.dispatchEvent(new PopStateEvent('popstate'))
+            }, 0)
           }
         })(window.location)
       })()
