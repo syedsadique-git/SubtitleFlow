@@ -1,0 +1,57 @@
+{
+  "manifest_version": 3,
+  "name": "SubtitleFlow",
+  "version": "1.0.0",
+  "description": "AI-powered real-time subtitle translation for any video on the web.",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting",
+    "tabs"
+  ],
+  "host_permissions": [
+    "https://www.youtube.com/*",
+    "https://*.youtube.com/*",
+    "https://*.coursera.org/*",
+    "https://*.udemy.com/*",
+    "https://*.twitch.tv/*",
+    "https://*.vimeo.com/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.svg",
+      "48": "icons/icon48.svg",
+      "128": "icons/icon128.svg"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.svg",
+    "48": "icons/icon48.svg",
+    "128": "icons/icon128.svg"
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.youtube.com/*",
+        "https://*.youtube.com/*",
+        "https://*.coursera.org/*",
+        "https://*.udemy.com/*",
+        "https://*.twitch.tv/*",
+        "https://*.vimeo.com/*"
+      ],
+      "js": ["content.js"],
+      "css": ["styles.css"]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["styles.css", "icons/*.svg"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}

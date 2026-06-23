@@ -1,0 +1,36 @@
+/* SubtitleFlow Content Script Styles */
+
+#subtitleflow-overlay {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999999;
+  text-align: center;
+  pointer-events: none;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  transition: all 0.3s ease;
+}
+
+#subtitleflow-overlay .subtitle-text {
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 8px;
+  max-width: 80vw;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  line-height: 1.5;
+}
+
+/* High contrast mode */
+.subtitleflow-high-contrast .subtitle-text {
+  background: #000000 !important;
+  color: #ffffff !important;
+  font-weight: 700;
+}
+
+/* Dyslexia-friendly font */
+.subtitleflow-dyslexia .subtitle-text {
+  font-family: 'OpenDyslexic', 'Comic Sans MS', sans-serif !important;
+  letter-spacing: 0.05em;
+}
