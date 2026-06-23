@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import { ThemeProvider } from './context/ThemeContext'
 import App from './App.tsx'
+import './index.css'
 
 // basename must match the GitHub Pages subpath (no trailing slash).
 // Keep in sync with `base` in vite.config.ts.
