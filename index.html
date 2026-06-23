@@ -2,21 +2,25 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/SubtitleFlow/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SubtitleFlow - AI-Powered Real-Time Subtitle Translation</title>
     <meta name="description" content="Understand any video in any language with AI-powered real-time subtitle translation. Browser extension for Chrome, Edge, Firefox, and Brave." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <script>
+      if (window.location.hostname === 'syedsadique-git.github.io') {
+        var l = document.createElement('link')
+        l.rel = 'stylesheet'
+        l.href = '/SubtitleFlow/assets/index.css'
+        document.head.appendChild(l)
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
     <script>
-      // SPA deep-link redirect for GitHub Pages.
-      // When a deep link (e.g. /SubtitleFlow/pricing) is refreshed, Pages serves
-      // 404.html, which stores the requested path here and bounces to the app
-      // root. On load, we restore it so the router can render the right route.
       (function () {
         (function (l) {
           if (l.search[1] === '/') {
@@ -31,6 +35,14 @@
           }
         })(window.location)
       })()
+    </script>
+    <script>
+      if (window.location.hostname === 'syedsadique-git.github.io') {
+        var s = document.createElement('script')
+        s.type = 'module'
+        s.src = '/SubtitleFlow/assets/index.js'
+        document.body.appendChild(s)
+      }
     </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
