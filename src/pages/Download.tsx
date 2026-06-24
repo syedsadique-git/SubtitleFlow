@@ -164,12 +164,12 @@ export default function Download() {
               </p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <a
-                  href="/SubtitleFlow/downloads/install-subtitleflow.bat"
+                  href="/SubtitleFlow/downloads/SubtitleFlow-Setup.exe"
                   download
                   className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-semibold text-sm transition-all hover:shadow-lg hover:shadow-blue-500/25 active:scale-[0.98]"
                 >
                   <DownloadIcon size={16} />
-                  Download Installer (.bat)
+                  Download for Windows (.exe)
                 </a>
                 <Link
                   to="/install"

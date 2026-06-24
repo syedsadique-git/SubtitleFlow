@@ -57,27 +57,21 @@ export default function Navbar() {
 
           <div className="hidden lg:flex items-center gap-8">
             {navLinks.map(link => (
-              link.href.startsWith('/#') ? (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className="text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-indigo-500 dark:hover:text-indigo-400 transition-colors"
-                >
-                  {link.label}
-                </a>
-              ) : (
-                <Link
-                  key={link.label}
-                  to={link.href}
-                  className={`text-sm font-medium transition-colors ${
-                    location.pathname === link.href
-                      ? 'text-indigo-500 dark:text-indigo-400'
-                      : 'text-slate-600 dark:text-slate-400 hover:text-indigo-500 dark:hover:text-indigo-400'
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              )
+              <Link
+                key={link.label}
+                to={link.href}
+                className={`text-sm font-medium transition-colors ${
+                  location.pathname === link.href || (link.href === '/#features' && location.pathname === '/')
+                    ? 'text-indigo-500 dark:text-indigo-400'
+                    : 'text-slate-600 dark:text-slate-400 hover:text-indigo-500 dark:hover:text-indigo-400'
+                }`}
+                onClick={link.href === '/#features' ? () => setTimeout(() => {
+                  const el = document.getElementById('features')
+                  if (el) el.scrollIntoView({ behavior: 'smooth' })
+                }, 100) : undefined}
+              >
+                {link.label}
+              </Link>
             ))}
           </div>
 
@@ -91,7 +85,7 @@ export default function Navbar() {
             </button>
 
             <Link
-              to="/download"
+              to="/install"
               className="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-indigo-500 hover:bg-indigo-600 text-white text-sm font-medium transition-all hover:shadow-lg hover:shadow-indigo-500/25"
             >
               <Download size={16} />
@@ -122,30 +116,28 @@ export default function Navbar() {
           >
             <div className="px-4 py-4 space-y-2">
               {navLinks.map(link => (
-                link.href.startsWith('/#') ? (
-                  <a
-                    key={link.label}
-                    href={link.href}
-                    className="block px-3 py-2 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
-                  >
-                    {link.label}
-                  </a>
-                ) : (
-                  <Link
-                    key={link.label}
-                    to={link.href}
-                    className={`block px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
-                      location.pathname === link.href
-                        ? 'text-indigo-500 bg-indigo-50 dark:bg-indigo-500/10'
-                        : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'
-                    }`}
-                  >
-                    {link.label}
-                  </Link>
-                )
+                <Link
+                  key={link.label}
+                  to={link.href}
+                  className={`block px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                    location.pathname === link.href
+                      ? 'text-indigo-500 bg-indigo-50 dark:bg-indigo-500/10'
+                      : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'
+                  }`}
+                  onClick={() => {
+                    if (link.href === '/#features') {
+                      setTimeout(() => {
+                        const el = document.getElementById('features')
+                        if (el) el.scrollIntoView({ behavior: 'smooth' })
+                      }, 100)
+                    }
+                  }}
+                >
+                  {link.label}
+                </Link>
               ))}
               <Link
-                to="/download"
+                to="/install"
                 className="flex items-center gap-2 px-3 py-2 rounded-lg bg-indigo-500 text-white text-sm font-medium"
               >
                 <Download size={16} />

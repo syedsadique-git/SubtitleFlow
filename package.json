@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build",
     "postbuild": "node scripts/copy-assets.mjs",
     "package:ext": "node scripts/package-extension.mjs",
-    "build:all": "npm run package:ext && npm run build",
+    "build:installer": "node scripts/build-installer.mjs",
+    "build:all": "npm run build:installer && npm run package:ext && npm run build",
     "lint": "oxlint",
     "preview": "vite preview"
   },
