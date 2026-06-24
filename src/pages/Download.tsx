@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
-import { DownloadIcon, Globe, Sparkles, ExternalLink, FileArchive, ArrowRight, CheckCircle } from 'lucide-react'
+import { DownloadIcon, Globe, Sparkles, ExternalLink, FileArchive, ArrowRight, CheckCircle, Monitor, Terminal } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { detectOS } from '../hooks/useExtensionDetection'
 
 const browsers = [
   {
@@ -72,6 +73,8 @@ const instructions = [
 ]
 
 export default function Download() {
+  const os = detectOS()
+
   return (
     <div className="pt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -91,6 +94,18 @@ export default function Download() {
           <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
             Available on all major browsers. Free to download, free to use.
           </p>
+          <div className="flex items-center justify-center gap-2 mt-4">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-xs font-medium text-slate-500 dark:text-slate-400">
+              <Monitor size={12} />
+              Detected: {os}
+            </span>
+            {os === 'Windows' && (
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-100 dark:bg-blue-900/30 text-xs font-medium text-blue-600 dark:text-blue-400">
+                <DownloadIcon size={12} />
+                Windows installer available
+              </span>
+            )}
+          </div>
         </motion.div>
 
         {/* Direct Download Card */}
@@ -124,6 +139,66 @@ export default function Download() {
                 <span className="flex items-center gap-1"><CheckCircle size={12} /> Manifest V3</span>
                 <span className="flex items-center gap-1"><CheckCircle size={12} /> ~50 KB</span>
                 <span className="flex items-center gap-1"><CheckCircle size={12} /> No account needed</span>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Windows Desktop Installer */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          className="max-w-2xl mx-auto mb-16"
+        >
+          <div className="relative group p-8 sm:p-10 rounded-2xl border-2 border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900/50 text-center overflow-hidden">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-cyan-500/10 to-transparent rounded-bl-full" />
+            <div className="relative">
+              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-600 to-cyan-500 flex items-center justify-center mx-auto mb-4 shadow-lg shadow-cyan-500/20">
+                <Monitor size={28} className="text-white" />
+              </div>
+              <h2 className="text-2xl font-bold mb-2">Download for Windows Desktop</h2>
+              <p className="text-slate-500 dark:text-slate-400 mb-6 max-w-md mx-auto">
+                One-click installer script for Windows. Downloads, extracts, and opens your browser's
+                extensions page — all automatically.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                <a
+                  href="/SubtitleFlow/downloads/install-subtitleflow.bat"
+                  download
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-semibold text-sm transition-all hover:shadow-lg hover:shadow-blue-500/25 active:scale-[0.98]"
+                >
+                  <DownloadIcon size={16} />
+                  Download Installer (.bat)
+                </a>
+                <Link
+                  to="/install"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 font-semibold text-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition-all"
+                >
+                  <Terminal size={16} />
+                  Manual Setup
+                </Link>
+              </div>
+              <div className="mt-5 p-4 rounded-xl bg-slate-50 dark:bg-slate-900 text-left">
+                <p className="text-xs font-semibold text-slate-500 dark:text-slate-400 mb-2 uppercase tracking-wider">What it does</p>
+                <ul className="space-y-1.5 text-xs text-slate-500 dark:text-slate-400">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle size={12} className="text-green-500 mt-0.5 shrink-0" />
+                    Downloads the latest extension ZIP
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle size={12} className="text-green-500 mt-0.5 shrink-0" />
+                    Extracts it to your Downloads folder
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle size={12} className="text-green-500 mt-0.5 shrink-0" />
+                    Automatically detects Chrome, Edge, or Firefox
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle size={12} className="text-green-500 mt-0.5 shrink-0" />
+                    Opens the extensions page with Developer Mode prompt
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
