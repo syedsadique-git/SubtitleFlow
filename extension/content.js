@@ -1,12 +1,10 @@
-// SubtitleFlow Content Script
-// Injects subtitle overlay into video pages
-
-let subtitleOverlay = null;
-let currentSubtitle = null;
+let subtitleOverlay = null
 
 function initialize() {
-  subtitleOverlay = document.createElement('div');
-  subtitleOverlay.id = 'subtitleflow-overlay';
+  document.documentElement.dataset.subtitleflowInstalled = 'true'
+
+  subtitleOverlay = document.createElement('div')
+  subtitleOverlay.id = 'subtitleflow-overlay'
   subtitleOverlay.style.cssText = `
     position: fixed;
     bottom: 80px;
@@ -16,12 +14,23 @@ function initialize() {
     text-align: center;
     pointer-events: none;
     transition: all 0.3s ease;
-  `;
-  document.body.appendChild(subtitleOverlay);
+  `
+  document.body.appendChild(subtitleOverlay)
+
+  window.addEventListener('message', (event) => {
+    if (event.source !== window) return
+    if (event.data && event.data.type === 'SUBTITLEFLOW_PING') {
+      window.postMessage({
+        type: 'SUBTITLEFLOW_PONG',
+        installed: true,
+        version: chrome.runtime.getManifest().version,
+      }, '*')
+    }
+  })
 }
 
 function updateSubtitle(text, translation, config) {
-  if (!subtitleOverlay) return;
+  if (!subtitleOverlay) return
 
   subtitleOverlay.innerHTML = `
     <div style="
@@ -37,14 +46,26 @@ function updateSubtitle(text, translation, config) {
     ">
       ${translation || text}
     </div>
-  `;
+  `
 }
 
-// Listen for messages from background script
+function removeOverlay() {
+  if (subtitleOverlay) {
+    subtitleOverlay.remove()
+    subtitleOverlay = null
+  }
+}
+
 chrome.runtime.onMessage.addListener((message) => {
   if (message.type === 'UPDATE_SUBTITLE') {
-    updateSubtitle(message.text, message.translation, message.config);
+    updateSubtitle(message.text, message.translation, message.config)
+  } else if (message.type === 'DISABLE_SUBTITLES') {
+    removeOverlay()
   }
-});
+})
 
-initialize();
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initialize)
+} else {
+  initialize()
+}

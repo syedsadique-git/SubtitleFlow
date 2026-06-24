@@ -5,6 +5,7 @@ import Home from './pages/Home'
 
 const PricingPage = lazy(() => import('./pages/PricingPage'))
 const Download = lazy(() => import('./pages/Download'))
+const Install = lazy(() => import('./pages/Install'))
 const Documentation = lazy(() => import('./pages/Documentation'))
 const FAQ = lazy(() => import('./pages/FAQ'))
 const NotFound = lazy(() => import('./pages/NotFound'))
@@ -33,6 +34,7 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/pricing" element={<PricingPage />} />
             <Route path="/download" element={<Download />} />
+            <Route path="/install" element={<Install />} />
             <Route path="/docs" element={<Documentation />} />
             <Route path="/faq" element={<FAQ />} />
             <Route path="*" element={<NotFound />} />

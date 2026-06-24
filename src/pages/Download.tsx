@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { DownloadIcon, Globe, Sparkles, ExternalLink } from 'lucide-react'
+import { DownloadIcon, Globe, Sparkles, ExternalLink, FileArchive, ArrowRight, CheckCircle } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
 const browsers = [
@@ -51,13 +51,13 @@ const browsers = [
 const instructions = [
   {
     step: 1,
-    title: 'Visit the Store',
-    description: 'Click the button below to go to your browser\'s extension store.',
+    title: 'Download the Extension',
+    description: 'Download the SubtitleFlow ZIP from our secure server.',
   },
   {
     step: 2,
-    title: 'Add to Browser',
-    description: 'Click "Add to [Browser]" and confirm the installation prompt.',
+    title: 'Install Directly',
+    description: 'Extract the ZIP, enable Developer Mode, and load the unpacked extension.',
   },
   {
     step: 3,
@@ -93,7 +93,54 @@ export default function Download() {
           </p>
         </motion.div>
 
-        {/* Browser cards */}
+        {/* Direct Download Card */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1 }}
+          className="max-w-2xl mx-auto mb-16"
+        >
+          <div className="relative group p-8 sm:p-10 rounded-2xl border-2 border-indigo-200 dark:border-indigo-800 bg-gradient-to-br from-indigo-50 to-cyan-50 dark:from-indigo-950/30 dark:to-cyan-950/30 text-center overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/10 to-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="relative">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-500 text-sm font-medium mb-4">
+                <FileArchive size={14} />
+                No Store Required
+              </div>
+              <h2 className="text-2xl font-bold mb-2">Install Without the Store</h2>
+              <p className="text-slate-500 dark:text-slate-400 mb-6 max-w-md mx-auto">
+                Download the extension ZIP directly and install it manually. No Chrome Web Store,
+                no Edge Add-ons — just you and your browser.
+              </p>
+              <Link
+                to="/install"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-indigo-500 to-cyan-500 text-white font-semibold text-sm transition-all hover:shadow-lg hover:shadow-indigo-500/25 active:scale-[0.98]"
+              >
+                <DownloadIcon size={16} />
+                Download Extension
+                <ArrowRight size={16} />
+              </Link>
+              <div className="mt-4 flex items-center justify-center gap-4 text-xs text-slate-400">
+                <span className="flex items-center gap-1"><CheckCircle size={12} /> Manifest V3</span>
+                <span className="flex items-center gap-1"><CheckCircle size={12} /> ~50 KB</span>
+                <span className="flex items-center gap-1"><CheckCircle size={12} /> No account needed</span>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+        <div className="relative mb-8">
+          <div className="absolute inset-0 flex items-center">
+            <div className="w-full border-t border-slate-200 dark:border-slate-800" />
+          </div>
+          <div className="relative flex justify-center">
+            <span className="px-4 text-xs font-medium text-slate-400 bg-white dark:bg-slate-950">
+              OR INSTALL FROM THE STORE
+            </span>
+          </div>
+        </div>
+
+        {/* Browser cards for store links */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-20 max-w-4xl mx-auto">
           {browsers.map((browser, index) => (
             <motion.div
@@ -110,10 +157,12 @@ export default function Download() {
               <p className="text-xs text-slate-400 mb-4">Manifest {browser.version}</p>
               <a
                 href={browser.url}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-indigo-500 hover:bg-indigo-600 text-white text-sm font-medium transition-all hover:shadow-lg hover:shadow-indigo-500/25"
               >
-              <DownloadIcon size={14} />
-              Download
+                <DownloadIcon size={14} />
+                Store
                 <ExternalLink size={12} />
               </a>
             </motion.div>
@@ -127,7 +176,7 @@ export default function Download() {
           viewport={{ once: true }}
           className="max-w-3xl mx-auto w-full"
         >
-          <h2 className="text-2xl font-bold text-center mb-8">How to Install</h2>
+          <h2 className="text-2xl font-bold text-center mb-8">Quick Install Steps</h2>
           <div className="space-y-4">
             {instructions.map(inst => (
               <div
@@ -154,6 +203,12 @@ export default function Download() {
           className="text-center mt-16"
         >
           <p className="text-slate-500 dark:text-slate-400 mb-4">
+            Need detailed instructions?{' '}
+            <Link to="/install" className="text-indigo-500 hover:text-indigo-400 font-medium">
+              View full installation guide →
+            </Link>
+          </p>
+          <p className="text-slate-500 dark:text-slate-400">
             Already have the extension?{' '}
             <Link to="/docs" className="text-indigo-500 hover:text-indigo-400 font-medium">
               View documentation →

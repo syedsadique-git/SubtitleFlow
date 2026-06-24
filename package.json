@@ -7,6 +7,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "postbuild": "node scripts/copy-assets.mjs",
+    "package:ext": "node scripts/package-extension.mjs",
+    "build:all": "npm run package:ext && npm run build",
     "lint": "oxlint",
     "preview": "vite preview"
   },
@@ -24,6 +26,7 @@
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.2",
+    "jszip": "^3.10.1",
     "oxlint": "^1.69.0",
     "typescript": "~6.0.2",
     "vite": "^8.1.0"
